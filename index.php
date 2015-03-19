@@ -1,5 +1,9 @@
 <?php
 
+# setting correct response header is required for jQuery to correctly parse JSON
+# when doing AJAX calls.
+header('Content-Type', 'application/json');
+
 $query = isset($_GET['path']) ? $_GET['path'] : '/';
 $query = trim($query, '/');
 $segments = explode('/', $query);

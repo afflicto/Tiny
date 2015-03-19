@@ -7,18 +7,21 @@ class Tiny.Store.RESTDriver
 
 	fetch: (type, page, callback) ->
 		$.get(@apiURL + type + '/page/' + page, (response) =>
-			response = $.parseJSON response
 			callback response.records
 		)
 
 	save: (type, attributes, callback) ->
 		$.post(@apiURL + type, attributes, (response) =>
-			response = $.parseJSON response
 			callback response.id
 		)
 
 	destroy: (type, id, callback) ->
 		$.get(@apiURL + type + '/delete/' + id, (response) =>
-			response = $.parseJSON(response)
 			callback response.success
 		)
+
+	get: (path, callback) ->
+		$.get(@apiURL + path, callback);
+
+	post: (path, data, callback) ->
+		$.post(@apiURL + path, data, callback);

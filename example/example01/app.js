@@ -119,7 +119,7 @@
 
   app.store.driver = new Tiny.Store.RESTDriver('http://home.dev/tiny/');
 
-  app.router.setRootURL('tiny/example/example01');
+  app.router.setRootURL('home.dev/tiny/example/example01');
 
   app.router.map({
     '/': 'dashboard',

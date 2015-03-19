@@ -26,10 +26,25 @@ class Tiny.Router
 			@routes.push new Tiny.Route(path, callback)
 
 	getCurrentPath: () ->
-		return window.location.pathname.replace(@rootURL, '').replace(/\/{2,}/, '')
+		path = window.location.href.replace(/https?:\/\//, '')
+			.replace(@rootURL, '')
+			.replace(/\/{2,/, '/')
+			.replace(/^\//, '').replace(/\/$/, '')
+			
+		path = '/' if path == ''
+		return path
+
+	makeURL: (path = "") ->
+		# trim url
+		path = path.replace(/^\//, '').replace(/\/$/, '')
+
+		# make full url
+		return @rootURL + "/" + path
 
 	init: () ->
 		path = @getCurrentPath()
+
+		console.log 'current path:' + path
 
 		@navigate(path)
 

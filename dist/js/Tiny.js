@@ -477,7 +477,6 @@
     RESTDriver.prototype.fetch = function(type, page, callback) {
       return $.get(this.apiURL + type + '/page/' + page, (function(_this) {
         return function(response) {
-          response = $.parseJSON(response);
           return callback(response.records);
         };
       })(this));
@@ -486,7 +485,6 @@
     RESTDriver.prototype.save = function(type, attributes, callback) {
       return $.post(this.apiURL + type, attributes, (function(_this) {
         return function(response) {
-          response = $.parseJSON(response);
           return callback(response.id);
         };
       })(this));
@@ -495,10 +493,17 @@
     RESTDriver.prototype.destroy = function(type, id, callback) {
       return $.get(this.apiURL + type + '/delete/' + id, (function(_this) {
         return function(response) {
-          response = $.parseJSON(response);
           return callback(response.success);
         };
       })(this));
+    };
+
+    RESTDriver.prototype.get = function(path, callback) {
+      return $.get(this.apiURL + path, callback);
+    };
+
+    RESTDriver.prototype.post = function(path, data, callback) {
+      return $.post(this.apiURL + path, data, callback);
     };
 
     return RESTDriver;
@@ -610,7 +615,7 @@
     };
 
     Route.prototype.run = function(uri, dontPush) {
-      var params;
+      var params, url;
       if (dontPush == null) {
         dontPush = false;
       }
@@ -618,8 +623,9 @@
       if (typeof this.target === 'string') {
         return Tiny.App.instance.router.navigate(this.target);
       } else {
+        url = Tiny.App.instance.router.rootURL.replace(window.location.host, '');
         if (!dontPush) {
-          history.pushState(this.signature, this.signature, '/' + Tiny.App.instance.router.rootURL + '/' + uri);
+          history.pushState(this.signature, this.signature, url + '/' + uri);
         }
         return this.target.apply(this.target, params);
       }
@@ -679,12 +685,26 @@
     };
 
     Router.prototype.getCurrentPath = function() {
-      return window.location.pathname.replace(this.rootURL, '').replace(/\/{2,}/, '');
+      var path;
+      path = window.location.href.replace(/https?:\/\//, '').replace(this.rootURL, '').replace(/\/{2,/, '/').replace(/^\//, '').replace(/\/$/, '');
+      if (path === '') {
+        path = '/';
+      }
+      return path;
+    };
+
+    Router.prototype.makeURL = function(path) {
+      if (path == null) {
+        path = "";
+      }
+      path = path.replace(/^\//, '').replace(/\/$/, '');
+      return this.rootURL + "/" + path;
     };
 
     Router.prototype.init = function() {
       var path;
       path = this.getCurrentPath();
+      console.log('current path:' + path);
       this.navigate(path);
       return $(window).bind('popstate', (function(_this) {
         return function(e) {

@@ -45,7 +45,7 @@ function asset($uri) {
 	
 	<div class="container" style="padding-top: 60px">
 		<!-- here is where pages will be rendered -->
-		<div id="outlet">
+		<div id="outlet"> 
 			<div id="dashboard">
 				Welcome to the dashboard x)
 			</div>

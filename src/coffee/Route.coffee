@@ -96,5 +96,6 @@ class Tiny.Route
 		if typeof @target == 'string'
 			Tiny.App.instance.router.navigate(@target)
 		else
-			unless dontPush then history.pushState(@signature, @signature, '/' + Tiny.App.instance.router.rootURL + '/' + uri)
+			url = Tiny.App.instance.router.rootURL.replace(window.location.host, '');
+			unless dontPush then history.pushState(@signature, @signature, url + '/' + uri)
 			@target.apply(@target, params)
