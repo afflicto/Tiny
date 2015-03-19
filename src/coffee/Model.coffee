@@ -5,6 +5,7 @@ class Tiny.Model
 			id: 0
 
 		@attributes[key] = value for key, value of attributes
+		@attributes.id = parseInt @attributes.id
 
 		@views = []
 

@@ -1,5 +1,5 @@
 (function() {
-  var slice = [].slice;
+  var hasProp = {}.hasOwnProperty;
 
   window.Tiny = {};
 
@@ -38,18 +38,42 @@
       $("[data-view]").hide();
     }
 
-    App.prototype.render = function() {
-      var controller, template, variables;
-      template = arguments[0], variables = 2 <= arguments.length ? slice.call(arguments, 1) : [];
-      console.log('rendering template: ' + template);
+    App.prototype.getControllerName = function(type) {
+      return Tiny.Util.capitalize(type) + 'Controller';
+    };
+
+    App.prototype.render = function(template, model) {
+      var controller, e, element, key, value, variables;
       this.outlet.find('> div').hide();
-      this.outlet.find('div#' + template).show();
+      element = this.outlet.find('div#' + template).show();
+      if (model != null) {
+        if (model instanceof Tiny.Model) {
+          variables = model.attributes;
+        } else {
+          variables = model;
+        }
+        element.attr('data-tiny-id', variables.id);
+        for (key in variables) {
+          if (!hasProp.call(variables, key)) continue;
+          value = variables[key];
+          e = element.find('[data-bind="' + key + '"]');
+          if (e.prop('tagName') === 'input') {
+            e.val(value);
+          } else {
+            e.html(value);
+          }
+        }
+      }
       if (this.controllers[template] != null) {
         controller = this.controllers[template];
+      } else if (window[this.getControllerName(template)] != null) {
+        this.controllers[template] = controller = new window[controller]($(template));
+      }
+      if (controller != null) {
         if (!controller.initialized) {
           controller.init();
         }
-        return controller.show();
+        return controller.show(model);
       }
     };
 
@@ -125,7 +149,7 @@
         }
       }
       if (this.driver !== null) {
-        data = this.driver.get(type, id, (function(_this) {
+        data = this.driver.find(type, id, (function(_this) {
           return function(record) {
             record = _this.modelize(type, record);
             _this.records[type].push(record);
@@ -364,6 +388,7 @@
         value = attributes[key];
         this.attributes[key] = value;
       }
+      this.attributes.id = parseInt(this.attributes.id);
       this.views = [];
     }
 
@@ -517,6 +542,32 @@
       console.log(this);
     }
 
+    Route.prototype.extractParameters = function(uri) {
+      var index, j, len, param, params, ref, segment;
+      params = [];
+      index = 0;
+      uri = uri.split('/');
+      ref = this.segments;
+      for (j = 0, len = ref.length; j < len; j++) {
+        segment = ref[j];
+        if (/:[^:]*/.test(segment)) {
+          if ((uri[index] != null) === false) {
+            return params;
+          } else {
+            param = uri[index];
+            if (/[0-9]+/.test(param)) {
+              param = parseInt(param);
+            } else if (/[0-9\.]+/.test(param)) {
+              param = parseFloat(param);
+            }
+            params.push(param);
+          }
+        }
+        index++;
+      }
+      return params;
+    };
+
     Route.prototype.matches = function(uri) {
       var i, j, len, ref, segment;
       if (this.signature === '/' && uri === '/') {
@@ -558,12 +609,19 @@
       return true;
     };
 
-    Route.prototype.run = function(uri) {
+    Route.prototype.run = function(uri, dontPush) {
+      var params;
+      if (dontPush == null) {
+        dontPush = false;
+      }
+      params = this.extractParameters(uri);
       if (typeof this.target === 'string') {
         return Tiny.App.instance.router.navigate(this.target);
       } else {
-        history.pushState(this.signature, '', uri);
-        return this.target();
+        if (!dontPush) {
+          history.pushState(this.signature, this.signature, '/' + Tiny.App.instance.router.rootURL + '/' + uri);
+        }
+        return this.target.apply(this.target, params);
       }
     };
 
@@ -590,21 +648,23 @@
       if (dontPush == null) {
         dontPush = false;
       }
-      console.log('navigating to:' + path);
       path = path.replace(/^\//, '');
       path = path.replace(/\/$/, '');
       if (path === '') {
         path = '/';
       }
-      console.log('path is:' + path + ', searching routes...');
       ref = this.routes;
       for (i = 0, len = ref.length; i < len; i++) {
         route = ref[i];
         if (route.matches(path)) {
-          return route.run(path);
+          return route.run(path, dontPush);
         }
       }
-      return console.log('404: not found (' + path + ')');
+      return this.notFound.apply(this, [path]);
+    };
+
+    Router.prototype.setRootURL = function(url) {
+      return this.rootURL = url.replace(/^\//, '').replace(/\/$/, '');
     };
 
     Router.prototype.map = function(routes) {
@@ -618,21 +678,18 @@
       return results;
     };
 
+    Router.prototype.getCurrentPath = function() {
+      return window.location.pathname.replace(this.rootURL, '').replace(/\/{2,}/, '');
+    };
+
     Router.prototype.init = function() {
-      var current;
-      console.log('initializing router...');
-      current = window.location.href;
-      current = current.replace(this.rootURL, '');
-      current = current.replace('http://', '');
-      console.log('current url: "' + current + '"');
-      this.navigate(current);
+      var path;
+      path = this.getCurrentPath();
+      this.navigate(path);
       return $(window).bind('popstate', (function(_this) {
         return function(e) {
-          console.log('popstate fired!');
-          current = window.location.href;
-          current = current.replace(_this.rootURL, '');
-          current = current.replace('http://', '');
-          return _this.navigate(current, true);
+          path = _this.getCurrentPath();
+          return _this.navigate(path, true);
         };
       })(this));
     };

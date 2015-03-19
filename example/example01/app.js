@@ -69,6 +69,29 @@
 
   })(Tiny.Controller);
 
+  window.NoteController = (function(superClass) {
+    extend(NoteController, superClass);
+
+    function NoteController() {
+      return NoteController.__super__.constructor.apply(this, arguments);
+    }
+
+    NoteController.prototype.events = {
+      'click button.destroy': 'destroy'
+    };
+
+    NoteController.prototype.show = function(model) {
+      this.model = model;
+    };
+
+    NoteController.prototype.destroy = function() {
+      return console.log('destroying note ' + this.model.attributes.id);
+    };
+
+    return NoteController;
+
+  })(Tiny.Controller);
+
   window.NoteModel = (function(superClass) {
     extend(NoteModel, superClass);
 
@@ -96,7 +119,7 @@
 
   app.store.driver = new Tiny.Store.RESTDriver('http://home.dev/tiny/');
 
-  app.router.rootURL = 'home.dev/tiny/example/example01';
+  app.router.setRootURL('tiny/example/example01');
 
   app.router.map({
     '/': 'dashboard',
@@ -106,8 +129,8 @@
     'notes': function() {
       return app.render('notes');
     },
-    'notes/:id': function(id) {
-      return app.render('notes').show(id);
+    'note/:id': function(id) {
+      return app.render('note', app.store.find('note', id));
     }
   });
 

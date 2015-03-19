@@ -32,14 +32,36 @@ class Tiny.App
 		# hide all views by default
 		$("[data-view]").hide()
 
-	# render the given template to the outlet
-	render: (template, variables...) ->
-		console.log('rendering template: ' + template)
+	getControllerName: (type) ->
+		return Tiny.Util.capitalize(type) + 'Controller'
+
+	# render the given template
+	render: (template, model) ->
 		@outlet.find('> div').hide()
-		@outlet.find('div#' + template)
-			.show()
+		element = @outlet.find('div#' + template).show()
+
+		if model?
+			# is it a model instance?
+			if model instanceof Tiny.Model
+				variables = model.attributes
+			else 
+				variables = model
+			
+			element.attr('data-tiny-id', variables.id);
+
+			# now put in the values
+			for own key, value of variables
+				e = element.find('[data-bind="' + key + '"]')
+				if e.prop('tagName') == 'input'
+					e.val(value)
+				else
+					e.html(value)
 
 		if @controllers[template]?
 			controller = @controllers[template]
+		else if window[@getControllerName(template)]?
+			@controllers[template] = controller = new window[controller] $(template)
+
+		if controller?
 			controller.init() unless controller.initialized
-			controller.show()
+			controller.show(model)

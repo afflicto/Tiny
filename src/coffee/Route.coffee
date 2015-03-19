@@ -27,6 +27,25 @@ class Tiny.Route
 
 		console.log @
 
+	extractParameters: (uri) ->
+		params = []
+		index = 0
+		uri = uri.split '/'
+		for segment in @segments
+			if /:[^:]*/.test segment
+				if uri[index]? == false
+					return params
+				else
+					# parse parameter. We might wanna turn it into an integer of float.
+					param = uri[index]
+					if /[0-9]+/.test param
+						param = parseInt param
+					else if /[0-9\.]+/.test param
+						param = parseFloat param
+					params.push(param)
+			index++
+		return params
+
 
 	matches: (uri) ->
 		# is it the root url?
@@ -71,13 +90,11 @@ class Tiny.Route
 
 		return true
 
-	run: (uri) ->
+	run: (uri, dontPush = false) ->
+		params = @extractParameters uri
+
 		if typeof @target == 'string'
 			Tiny.App.instance.router.navigate(@target)
 		else
-			history.pushState(@signature, '', uri)
-			@target()
-
-
-# notes/:type/:num?
-# notes/cake/3
+			unless dontPush then history.pushState(@signature, @signature, '/' + Tiny.App.instance.router.rootURL + '/' + uri)
+			@target.apply(@target, params)

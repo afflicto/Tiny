@@ -41,6 +41,17 @@ class window.NotesController extends Tiny.Controller
 		note.save (id) =>
 			note.render(@element.find('.note'))
 
+
+
+class window.NoteController extends Tiny.Controller
+	events: 
+		'click button.destroy': 'destroy'
+
+	show: (@model) ->
+	
+	destroy: () ->
+		console.log 'destroying note ' + @model.attributes.id
+
 			
 		
 
@@ -62,7 +73,7 @@ app = new Tiny.App(['router', 'store'])
 
 app.store.driver = new Tiny.Store.RESTDriver('http://home.dev/tiny/');
 
-app.router.rootURL = 'home.dev/tiny/example/example01'
+app.router.setRootURL 'tiny/example/example01'
 
 # Let's create our first route
 # the path will be /
@@ -74,8 +85,8 @@ app.router.map
 		app.render('dashboard')
 	'notes': () ->
 		app.render('notes')
-	'notes/:id': (id) ->
-		app.render('notes').show(id)
+	'note/:id': (id) ->
+		app.render('note', app.store.find('note', id))
 
 
 

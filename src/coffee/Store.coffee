@@ -47,7 +47,7 @@ class Tiny.Store
 				return record
 
 		if @driver isnt null
-			data = @driver.get type, id, (record) =>
+			data = @driver.find type, id, (record) =>
 				record = @modelize type, record
 				@records[type].push record
 				return record
