@@ -1,6 +1,6 @@
 {
   "name": "tinymvc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tiny Javascript Frontend Framework",
   "directories": {
     "example": "example"

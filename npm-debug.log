@@ -13,17 +13,17 @@
 7 silly cache add   rawSpec: '.',
 7 silly cache add   spec: 'c:\\Users\\Affy\\dev\\www\\tiny',
 7 silly cache add   type: 'directory' }
-8 verbose addLocalDirectory C:\Users\Affy\AppData\Roaming\npm-cache\Tiny\0.1.0\package.tgz not in flight; packing
-9 verbose tar pack [ 'C:\\Users\\Affy\\AppData\\Roaming\\npm-cache\\Tiny\\0.1.0\\package.tgz',
+8 verbose addLocalDirectory C:\Users\Affy\AppData\Roaming\npm-cache\tinymvc\0.1.0\package.tgz not in flight; packing
+9 verbose tar pack [ 'C:\\Users\\Affy\\AppData\\Roaming\\npm-cache\\tinymvc\\0.1.0\\package.tgz',
 9 verbose tar pack   'c:\\Users\\Affy\\dev\\www\\tiny' ]
-10 verbose tarball C:\Users\Affy\AppData\Roaming\npm-cache\Tiny\0.1.0\package.tgz
+10 verbose tarball C:\Users\Affy\AppData\Roaming\npm-cache\tinymvc\0.1.0\package.tgz
 11 verbose folder c:\Users\Affy\dev\www\tiny
-12 info prepublish Tiny@0.1.0
-13 verbose addLocalTarball adding from inside cache C:\Users\Affy\AppData\Roaming\npm-cache\Tiny\0.1.0\package.tgz
-14 silly cache afterAdd Tiny@0.1.0
-15 verbose afterAdd C:\Users\Affy\AppData\Roaming\npm-cache\Tiny\0.1.0\package\package.json not in flight; writing
-16 verbose afterAdd C:\Users\Affy\AppData\Roaming\npm-cache\Tiny\0.1.0\package\package.json written
-17 silly publish { name: 'Tiny',
+12 info prepublish tinymvc@0.1.0
+13 verbose addLocalTarball adding from inside cache C:\Users\Affy\AppData\Roaming\npm-cache\tinymvc\0.1.0\package.tgz
+14 silly cache afterAdd tinymvc@0.1.0
+15 verbose afterAdd C:\Users\Affy\AppData\Roaming\npm-cache\tinymvc\0.1.0\package\package.json not in flight; writing
+16 verbose afterAdd C:\Users\Affy\AppData\Roaming\npm-cache\tinymvc\0.1.0\package\package.json written
+17 silly publish { name: 'tinymvc',
 17 silly publish   version: '0.1.0',
 17 silly publish   description: 'Tiny Javascript Frontend Framework',
 17 silly publish   directories: { example: 'example' },
@@ -40,33 +40,63 @@
 17 silly publish   license: 'MIT',
 17 silly publish   bugs: { url: 'https://github.com/afflicto/Tiny/issues' },
 17 silly publish   homepage: 'https://github.com/afflicto/Tiny',
-17 silly publish   readme: 'ERROR: No README data found!',
-17 silly publish   _id: 'Tiny@0.1.0',
-17 silly publish   _shasum: '3ba50ece413c256c89b9d9e8800cb2e4471866e2',
+17 silly publish   readme: 'Tiny is a tiny (600 lines of js) framework for building simple front-end applications.\r\n\r\n##Features\r\n\r\n* Renders views/templates via regular HTML elements.\r\n* Module-based (App, Router Store are the default ones)\r\n* Pretty easy to use. At least I think so, maybe just because I wrote it...\r\n* Only dependancy is jQuery.\r\n* Written in CoffeScript.\r\n\r\n## Development\r\nTo develop, you need:\r\n\r\n* npm\r\n* gulp\r\n* [W/M/L]AMP stack, or something else.. but you need PHP to run the example. And mod_rewrite, if you use apache that is.\r\n\r\nClone the git repo, then run `npm install`. Then run `gulp`.\r\nMake sure you clone the git repo in a place accessible by your local web root, the example directory contains an index.php',
+17 silly publish   readmeFilename: 'readme.md',
+17 silly publish   gitHead: '0ae414eb80db553df884c3ce77a0ca9f8fa10a33',
+17 silly publish   _id: 'tinymvc@0.1.0',
+17 silly publish   _shasum: '406a9b434c031a498ab8557b8731491afe713049',
 17 silly publish   _from: '.' }
-18 silly mapToRegistry name Tiny
+18 silly mapToRegistry name tinymvc
 19 silly mapToRegistry using default registry
 20 silly mapToRegistry registry https://registry.npmjs.org/
-21 silly mapToRegistry uri https://registry.npmjs.org/Tiny
+21 silly mapToRegistry uri https://registry.npmjs.org/tinymvc
 22 verbose publish registryBase https://registry.npmjs.org/
-23 silly publish uploading C:\Users\Affy\AppData\Roaming\npm-cache\Tiny\0.1.0\package.tgz
-24 verbose stack Error: Invalid name: "Tiny"
-24 verbose stack     at ensureValidName (c:\Program Files\nodejs\node_modules\npm\node_modules\normalize-package-data\lib\fixer.js:322:15)
-24 verbose stack     at Object.module.exports.fixNameField (c:\Program Files\nodejs\node_modules\npm\node_modules\normalize-package-data\lib\fixer.js:211:5)
-24 verbose stack     at CachingRegistryClient.publish (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\publish.js:41:11)
-24 verbose stack     at c:\Program Files\nodejs\node_modules\npm\lib\publish.js:135:14
-24 verbose stack     at mapToRegistry (c:\Program Files\nodejs\node_modules\npm\lib\utils\map-to-registry.js:55:3)
-24 verbose stack     at publish_ (c:\Program Files\nodejs\node_modules\npm\lib\publish.js:105:3)
-24 verbose stack     at Array.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\bind-actor.js:15:8)
-24 verbose stack     at LOOP (c:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:15:14)
-24 verbose stack     at LOOP (c:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:14:28)
-24 verbose stack     at chain (c:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\chain.js:20:5)
-25 verbose cwd c:\Users\Affy\dev\www\tiny
-26 error Windows_NT 6.3.9600
-27 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
-28 error node v0.12.0
-29 error npm  v2.5.1
-30 error Invalid name: "Tiny"
-31 error If you need help, you may report this error at:
-31 error     <http://github.com/npm/npm/issues>
-32 verbose exit [ 1, true ]
+23 silly publish uploading C:\Users\Affy\AppData\Roaming\npm-cache\tinymvc\0.1.0\package.tgz
+24 verbose request uri https://registry.npmjs.org/tinymvc
+25 verbose request sending authorization for write operation
+26 info attempt registry request try #1 at 03:14:56
+27 verbose request id ea2ea8191b204527
+28 http request PUT https://registry.npmjs.org/tinymvc
+29 http 403 https://registry.npmjs.org/tinymvc
+30 verbose headers { date: 'Thu, 19 Mar 2015 02:14:58 GMT',
+30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=60',
+30 verbose headers   'content-length': '3431',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   'x-served-by': 'cache-ams4125-AMS',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1426731297.503094,VS0,VE774',
+30 verbose headers   'keep-alive': 'timeout=10, max=50',
+30 verbose headers   connection: 'Keep-Alive' }
+31 verbose request invalidating C:\Users\Affy\AppData\Roaming\npm-cache\registry.npmjs.org\tinymvc on PUT
+32 error publish Failed PUT 403
+33 verbose stack Error: forbidden cannot modify pre-existing version: 0.1.0
+33 verbose stack old={"name":"tinymvc","version":"0.1.0","description":"Tiny Javascript Frontend Framework","directories":{"example":"example"},"dependencies":{"jquery":"^2.1.3"},"devDependencies":{"gulp-coffee":"^2.3.1","gulp-concat":"^2.5.2","gulp":"^3.8.11","gulp-order":"^1.1.1"},"scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"https://github.com/afflicto/Tiny"},"keywords":["javascript","coffeescript","mvc","spa"],"author":{"name":"Petter Thowsen"},"license":"MIT","bugs":{"url":"https://github.com/afflicto/Tiny/issues"},"homepage":"https://github.com/afflicto/Tiny","gitHead":"88590cba3c76697ae8a054b4241a396660f33269","_id":"tinymvc@0.1.0","_shasum":"0b78de4998fea04cc2e0584714d0adc0ebcec211","_from":".","_npmVersion":"2.5.1","_nodeVersion":"0.12.0","_npmUser":{"name":"afflicto","email":"me@afflicto.net"},"maintainers":[{"name":"afflicto","email":"me@afflicto.net"}],"dist":{"shasum":"0b78de4998fea04cc2e0584714d0adc0ebcec211","tarball":"http://registry.npmjs.org/tinymvc/-/tinymvc-0.1.0.tgz"}}
+33 verbose stack new={"name":"tinymvc","version":"0.1.0","description":"Tiny Javascript Frontend Framework","directories":{"example":"example"},"dependencies":{"jquery":"^2.1.3"},"devDependencies":{"gulp-coffee":"^2.3.1","gulp-concat":"^2.5.2","gulp":"^3.8.11","gulp-order":"^1.1.1"},"scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"https://github.com/afflicto/Tiny"},"keywords":["javascript","coffeescript","mvc","spa"],"author":{"name":"Petter Thowsen"},"license":"MIT","bugs":{"url":"https://github.com/afflicto/Tiny/issues"},"homepage":"https://github.com/afflicto/Tiny","readme":"Tiny is a tiny (600 lines of js) framework for building simple front-end applications.\u000d\u000a\u000d\u000a##Features\u000d\u000a\u000d\u000a* Renders views/templates via regular HTML elements.\u000d\u000a* Module-based (App, Router Store are the default ones)\u000d\u000a* Pretty easy to use. At least I think so, maybe just because I wrote it...\u000d\u000a* Only dependancy is jQuery.\u000d\u000a* Written in CoffeScript.\u000d\u000a\u000d\u000a## Development\u000d\u000aTo develop, you need:\u000d\u000a\u000d\u000a* npm\u000d\u000a* gulp\u000d\u000a* [W/M/L]AMP stack, or something else.. but you need PHP to run the example. And mod_rewrite, if you use apache that is.\u000d\u000a\u000d\u000aClone the git repo, then run `npm install`. Then run `gulp`.\u000d\u000aMake sure you clone the git repo in a place accessible by your local web root, the example directory contains an index.php","readmeFilename":"readme.md","gitHead":"0ae414eb80db553df884c3ce77a0ca9f8fa10a33","_id":"tinymvc@0.1.0","_shasum":"406a9b434c031a498ab8557b8731491afe713049","_from":".","_npmVersion":"2.5.1","_nodeVersion":"0.12.0","_npmUser":{"name":"afflicto","email":"me@afflicto.net"},"maintainers":[{"name":"afflicto","email":"me@afflicto.net"}],"dist":{"shasum":"406a9b434c031a498ab8557b8731491afe713049","tarball":"http://registry.npmjs.org/tinymvc/-/tinymvc-0.1.0.tgz"}}: tinymvc
+33 verbose stack     at CachingRegistryClient.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:254:14)
+33 verbose stack     at Request._callback (c:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:178:14)
+33 verbose stack     at Request.self.callback (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:344:22)
+33 verbose stack     at Request.emit (events.js:110:17)
+33 verbose stack     at Request.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1239:14)
+33 verbose stack     at Request.emit (events.js:129:20)
+33 verbose stack     at IncomingMessage.<anonymous> (c:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1187:12)
+33 verbose stack     at IncomingMessage.emit (events.js:129:20)
+33 verbose stack     at _stream_readable.js:908:16
+33 verbose stack     at process._tickCallback (node.js:355:11)
+34 verbose statusCode 403
+35 verbose pkgid tinymvc
+36 verbose cwd c:\Users\Affy\dev\www\tiny
+37 error Windows_NT 6.3.9600
+38 error argv "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+39 error node v0.12.0
+40 error npm  v2.5.1
+41 error code E403
+42 error forbidden cannot modify pre-existing version: 0.1.0
+42 error old={"name":"tinymvc","version":"0.1.0","description":"Tiny Javascript Frontend Framework","directories":{"example":"example"},"dependencies":{"jquery":"^2.1.3"},"devDependencies":{"gulp-coffee":"^2.3.1","gulp-concat":"^2.5.2","gulp":"^3.8.11","gulp-order":"^1.1.1"},"scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"https://github.com/afflicto/Tiny"},"keywords":["javascript","coffeescript","mvc","spa"],"author":{"name":"Petter Thowsen"},"license":"MIT","bugs":{"url":"https://github.com/afflicto/Tiny/issues"},"homepage":"https://github.com/afflicto/Tiny","gitHead":"88590cba3c76697ae8a054b4241a396660f33269","_id":"tinymvc@0.1.0","_shasum":"0b78de4998fea04cc2e0584714d0adc0ebcec211","_from":".","_npmVersion":"2.5.1","_nodeVersion":"0.12.0","_npmUser":{"name":"afflicto","email":"me@afflicto.net"},"maintainers":[{"name":"afflicto","email":"me@afflicto.net"}],"dist":{"shasum":"0b78de4998fea04cc2e0584714d0adc0ebcec211","tarball":"http://registry.npmjs.org/tinymvc/-/tinymvc-0.1.0.tgz"}}
+42 error new={"name":"tinymvc","version":"0.1.0","description":"Tiny Javascript Frontend Framework","directories":{"example":"example"},"dependencies":{"jquery":"^2.1.3"},"devDependencies":{"gulp-coffee":"^2.3.1","gulp-concat":"^2.5.2","gulp":"^3.8.11","gulp-order":"^1.1.1"},"scripts":{"test":"echo \"Error: no test specified\" && exit 1"},"repository":{"type":"git","url":"https://github.com/afflicto/Tiny"},"keywords":["javascript","coffeescript","mvc","spa"],"author":{"name":"Petter Thowsen"},"license":"MIT","bugs":{"url":"https://github.com/afflicto/Tiny/issues"},"homepage":"https://github.com/afflicto/Tiny","readme":"Tiny is a tiny (600 lines of js) framework for building simple front-end applications.\u000d\u000a\u000d\u000a##Features\u000d\u000a\u000d\u000a* Renders views/templates via regular HTML elements.\u000d\u000a* Module-based (App, Router Store are the default ones)\u000d\u000a* Pretty easy to use. At least I think so, maybe just because I wrote it...\u000d\u000a* Only dependancy is jQuery.\u000d\u000a* Written in CoffeScript.\u000d\u000a\u000d\u000a## Development\u000d\u000aTo develop, you need:\u000d\u000a\u000d\u000a* npm\u000d\u000a* gulp\u000d\u000a* [W/M/L]AMP stack, or something else.. but you need PHP to run the example. And mod_rewrite, if you use apache that is.\u000d\u000a\u000d\u000aClone the git repo, then run `npm install`. Then run `gulp`.\u000d\u000aMake sure you clone the git repo in a place accessible by your local web root, the example directory contains an index.php","readmeFilename":"readme.md","gitHead":"0ae414eb80db553df884c3ce77a0ca9f8fa10a33","_id":"tinymvc@0.1.0","_shasum":"406a9b434c031a498ab8557b8731491afe713049","_from":".","_npmVersion":"2.5.1","_nodeVersion":"0.12.0","_npmUser":{"name":"afflicto","email":"me@afflicto.net"},"maintainers":[{"name":"afflicto","email":"me@afflicto.net"}],"dist":{"shasum":"406a9b434c031a498ab8557b8731491afe713049","tarball":"http://registry.npmjs.org/tinymvc/-/tinymvc-0.1.0.tgz"}}: tinymvc
+43 error If you need help, you may report this error at:
+43 error     <http://github.com/npm/npm/issues>
+44 verbose exit [ 1, true ]
